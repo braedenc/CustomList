@@ -1,6 +1,10 @@
-﻿namespace CustomList
+﻿using System.Collections.Generic;
+using System.Collections;
+using System;
+
+namespace CustomList
 {
-    public class customList<T>
+    public class customList<T> : IEnumerable
     {
         public int Count = 1;
         public T[] myArray = new T[1];
@@ -16,20 +20,30 @@
             tempArray = myArray;
         }
 
-        public bool Remove(T value)
+        public IEnumerator GetEnumerator()
         {
-            if(Count > 0)
+            for(int i = 0; i < Count; i++)
             {
-                for(int i = this.Count; i > 0; i++)
-                {
-
-                }
-                Count--;
-                return true;
-            } else
-            {
-                return false;
+                yield return myArray[i];
             }
+        }
+
+        public void Remove(T value)
+        {
+            T[] tempArray = new T[myArray.Length];
+            for(int i = 0; i > this.Count; i++)
+            {
+                if(myArray[i].Equals(value))
+                {
+                    myArray[i] = default(T);
+                }
+                else
+                {
+                    tempArray[i] = myArray[i];
+                }
+            }
+            myArray = tempArray;
+            Count--;
         }
     }
 }

@@ -30,5 +30,17 @@ namespace UnitTestProject1
             //Assert
             Assert.AreEqual(expectedLength, list.Count);
         }
+
+        [TestMethod]
+        public void Iterate()
+        {
+            //Arrange
+            customList<int> list = new customList<int>();
+            int[] numbers;
+            //Act
+            list.GetEnumerator();
+            //Assert
+            
+        }
     }
 }
